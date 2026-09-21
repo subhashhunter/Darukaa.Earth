@@ -25,6 +25,24 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Root Route
+app.get('/', (req, res) => {
+  res.json({
+    message: '🌿 Welcome to Darukaa.Earth AI Biodiversity Intelligence API',
+    status: 'online',
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      chat: 'POST /api/chat',
+      reason: 'POST /api/reason',
+      knowledge: 'GET /api/knowledge',
+      spatial_lookup: 'GET /api/spatial/lookup?lat=18.52&lon=73.85',
+      export_docx: 'GET /api/export/docx'
+    },
+    documentation: 'https://github.com/subhashhunter/Darukaa.Earth'
+  });
+});
+
 // 1. Health Check
 app.get('/api/health', (req, res) => {
   res.json({
